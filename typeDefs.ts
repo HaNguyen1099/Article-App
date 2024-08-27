@@ -19,8 +19,9 @@ export const typeDefs = gql`
         avatar: String,
         description: String
     }
-    
+
     type Mutation {
         createArticle(article: ArticleInput): Article
+        deleteArticle(id: ID): String
     }
 `
