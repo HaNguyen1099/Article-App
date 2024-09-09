@@ -4,7 +4,7 @@ import Category from "../models/category.model"
 export const resolversArticle = {
     Query: {
         getListArticle: async (_, args) => {
-            const { sortKey, sortValue } = args
+            const { sortKey, sortValue, currentPage, limitItems } = args
 
             // Sort 
             const sort = {}
@@ -13,9 +13,13 @@ export const resolversArticle = {
                 sort[sortKey] = sortValue
             }
 
+            // Pagination 
+            const skip = (currentPage - 1) * limitItems
+
             const articles = await Article.find({
                 deleted: false
-            }).sort(sort)
+            }).sort(sort).limit(limitItems).skip(skip)
+            
             return articles
         },
 
