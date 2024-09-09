@@ -3,10 +3,6 @@ import Category from "./models/category.model"
 
 export const resolvers = {
     Query: {
-        hello: () => {
-            return "Hello World!"
-        },
-
         getListArticle: async () => {
             const articles = await Article.find({
                 deleted: false
